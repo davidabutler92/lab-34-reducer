@@ -1,7 +1,11 @@
+import React, { useState } from 'react';
+import reducer, { initialState } from '../reducers/colorReducer';
+
 const useRecord = (init) => {
   const [before, setBefore] = useState([]);
   const [current, setCurrent] = useState(init);
   const [after, setAfter] = useState([]);
+  // const [state, dispatch] = 
 
   const undo = () => {
     setAfter(after => [current, ...after]);
@@ -33,10 +37,10 @@ function App() {
 
   return (
     <>
-      <button onClick={undo}>undo</button>
-      <button onClick={redo}>redo</button>
-      <input type="color" value={current} onChange={({ target }) => record(target.value)} />
-      <div style={{ backgroundColor: current, width: '10rem', height: '10rem' }}></div>
+      <button data-testid='undo' onClick={undo}>undo</button>
+      <button data-testid='redo' onClick={redo}>redo</button>
+      <input data-testid='input' type='color' value={current} onChange={({ target }) => record(target.value)} />
+      <div data-testid='display' style={{ backgroundColor: current, width: '10rem', height: '10rem' }}></div>
     </>
   )
 }
